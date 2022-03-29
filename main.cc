@@ -7,8 +7,8 @@
 
 using boost::asio::ip::udp; ///??
 
-const unsigned short HELLO_PORT = 8888;
-const std::string HELLO_PORT_STR{"8888"};
+const unsigned short PORT = 8888;
+const std::string PORT_STR{"8888"};
 const std::string HOSTNAME{"127.0.0.1"};
 
 const int MAX_BUFFER_SIZE = 1024;
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 		try
 		{
 			udp::resolver resolver{io};
-			udp::endpoint destination = *resolver.resolve(udp::v4(), HOSTNAME, HELLO_PORT_STR).begin();
+			udp::endpoint destination = *resolver.resolve(udp::v4(), HOSTNAME, PORT_STR).begin();
 
 			udp::socket socket{io};
 			socket.open(udp::v4());
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 	{
 		try
 		{
-			udp::socket socket{io, udp::endpoint{udp::v4(), HELLO_PORT}};
+			udp::socket socket{io, udp::endpoint{udp::v4(), PORT}};
 			std::cout << "A la espera de conexiones..." << std::endl;
 
 			//while(true)
